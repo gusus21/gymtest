@@ -5,7 +5,6 @@
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body style=" background-color: black">
-
 	<h1>
 		<i>Gym 224 One Love</i>
 	</h1>
@@ -17,10 +16,24 @@
 	<div>
 		<article style="color: red; font-size: 20px">Some Gachi mixs:</article>
 	<ul>
-		<li> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=2"> Powerwolf Gachi remix </a></li>
-		<li> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=16"> Sabaton Gachi remix </a> </li>
-		<li> <a target="_blank" href="https://www.youtube.com/watch?v=fdQQqROxqPs&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=5">  Sabaton Gachi remix </a> </li>
+		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=2"> Powerwolf Gachi remix </a></li>
+		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=16"> Sabaton Gachi remix </a> </li>
+		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=fdQQqROxqPs&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=5">  Sabaton Gachi remix </a> </li>
 	</ul>
+	<audio id="audio" src="../audio/fisting-is-300-.mp3" muted autoplay></audio>
 	</div>
+	<script>
+		const links = document.getElementsByClassName("link")
+
+		Array.from(links).forEach(link => {
+			link.addEventListener("click", playAudio, false)
+		})
+		
+		function playAudio() {
+			const audio = document.getElementById("audio")
+			audio.muted = false;
+			audio.play();	
+		}
+	</script>
 </body>
 </html>	
