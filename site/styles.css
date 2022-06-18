@@ -13,8 +13,27 @@ a:hover{
     color: black;
     width: 200px;
     list-style: none;
+    text-decoration: none;
+}
+
+a{
+    color: crimson;
+    text-decoration: underline;
+    text-decoration-color: red;
 }
 
 li{
     font-size: 20px;
+}
+
+img{
+    border-radius: 20px;
+    box-sizing: border-box;
+    border: 5px solid red;
+    margin: 20px;
+}
+
+div .image{
+    vertical-align: middle;
+    margin: 0px, 10px, 0px, 10px;
 }
