@@ -8,13 +8,13 @@
 	<h1>
 		<i>Gym 224 One Love</i>
 	</h1>
-	<div class = "image" style = "font-size: 30px; color: red; text-align: center; display: flex;justify-content: center; align-items: center;">
+	<div class = "image" id="image" style = "font-size: 30px; text-align: center; display: flex;justify-content: center; align-items: center; visibility: hidden;">
 		<img src = "https://cutt.ly/mKy80ID" height="220px" width="200px">
 		Welcome to the Gym 224
 		<img src = "https://cutt.ly/XKy4TBB" height="220px" width="200px">
 	</div>
 	<div>
-		<article style="color: red; font-size: 20px">Some Gachi mixs:</article>
+		<article style="font-size: 20px">Some Gachi mixs:</article>
 	<ul>
 		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=2"> Powerwolf Gachi remix </a></li>
 		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=16"> Sabaton Gachi remix </a> </li>
@@ -35,5 +35,18 @@
 			audio.play();	
 		}
 	</script>
+	<div style="align-items: center; display: flex;justify-content: center;"  onclick="demonstrate(), hideButton()">
+		<article id = "button">Click me!</article>
+	</div>
+		
+	<script>
+		function demonstrate(){
+			document.getElementById("image").style.visibility = "initial";
+		}
+
+		function hideButton(){
+			document.getElementById("button").style.visibility = "hidden";
+		}
+		</script>
 </body>
 </html>	

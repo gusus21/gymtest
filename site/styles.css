@@ -1,9 +1,9 @@
 body{
     font-family: "Brush Script MT", Brush Script Std, cursive;
+    color: red;
 }
 
 h1{
-    color: red;
     text-align: center;
     font-size: 50px;
 }
@@ -36,4 +36,27 @@ img{
 div .image{
     vertical-align: middle;
     margin: 0px, 10px, 0px, 10px;
+
+}
+
+p:hover{
+    width: 60px;
+background-color: blue;
+color: black;
+}
+
+#button{
+    font-size: 20px;
+    color: black;
+    background-color: red;
+    width: 100px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 5px solid red;
+}
+
+#button:hover{
+cursor: grab;
+background-color: black;
+color: red;
 }
