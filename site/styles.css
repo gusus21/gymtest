@@ -1,5 +1,7 @@
 body{
     font-family: "Brush Script MT", Brush Script Std, cursive;
+    background-image: url("https://c.tenor.com/6V1ooQVn3CQAAAAd/gachi-fist.gif");
+    background-size: 100%;
     color: red;
 }
 
@@ -10,7 +12,6 @@ h1{
 
 a:hover{
     background-color: red;
-    color: black;
     width: 200px;
     list-style: none;
     text-decoration: none;
@@ -40,10 +41,13 @@ img{
     width: 10%;
 }
 
-@media (min-width: 600px) {
+#button{
+    visibility: hidden;
+}
+
+@media (min-width: 768px) {
     .image{
         width: 100%;
-        background-color: black;
     }
 
     img{

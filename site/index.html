@@ -4,7 +4,7 @@
 	<title> Gay website </title>
 	<link rel="stylesheet" href="styles.css">
 </head>
-<body style=" background-color: black">
+<body onload="buttonVisible()">
 	<h1>
 		<i>Gym 224 One Love</i>
 	</h1>
@@ -16,7 +16,7 @@
 			<img src = "https://cutt.ly/XKy4TBB">
 		</div>
 	<div>
-		<article style="font-size: 20px">Some Gachi mixs:</article>
+		<article style="font-size: 20px">Some Gachi mixes:</article>
 	<ul>
 		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=2"> Powerwolf Gachi remix </a></li>
 		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=16"> Sabaton Gachi remix </a> </li>
@@ -37,7 +37,7 @@
 			audio.play();	
 		}
 	</script>
-	<div style="align-items: center; display: flex;justify-content: center;"  onclick="demonstrate(), hideButton()">
+	<div style="align-items: center; display: flex;justify-content: center;"  onclick="demonstrate(), hideButton(), changeBackground()">
 		<article id = "button">Click me!</article>
 	</div>
 		
@@ -49,6 +49,25 @@
 		function hideButton(){
 			document.getElementById("button").style.visibility = "hidden";
 		}
+
+		function changeBackground(){
+			document.body.style.backgroundImage = "url('http://c.tenor.com/aBs-tJmtyQAAAAAC/gachimuchi-billy-herrington.gif')";
+		}
+
+		function showButton(){
+			document.getElementById("button").style.visibility = "initial";
+		}
+		
+		let timeVisible, timeHide;
+
+		function buttonVisible(){
+			timeVisible = setTimeout(showButton, 7000);
+		}
+
+		// function buttonResetVisible(){
+		// 	timHide = setTimeout(hideButton, 8000);
+		// }
+
 		</script>
 </body>
 </html>	
