@@ -81,3 +81,7 @@ cursor: grab;
 background-color: black;
 color: red;
 }
+
+#second-block{
+   float: right;
+}

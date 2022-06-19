@@ -17,13 +17,27 @@
 		</div>
 	<div>
 		<article style="font-size: 20px">Some Gachi mixes:</article>
-	<ul>
-		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=2"> Powerwolf Gachi remix </a></li>
-		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=16"> Sabaton Gachi remix </a> </li>
-		<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=fdQQqROxqPs&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=5">  Sabaton Gachi remix </a> </li>
-	</ul>
+		<ul>
+			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=16"> Sabaton Gachi remix </a> </li>
+			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=fdQQqROxqPs&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=5">  Sabaton Gachi remix </a> </li>
+			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=2"> Powerwolf Gachi remix </a></li>
+		</ul>
+		
+		
 	<audio id="audio" src="../audio/fisting-is-300-.mp3" muted autoplay></audio>
+	<audio id="music" src="../audio/boss-in-this-gy.mp3" muted autoplay></audio>
 	</div>
+	<div style="align-items: center; display: flex;justify-content: center;"  onclick="demonstrate(), hideButton(), changeBackground(), playMusic()">
+		<article id = "button">Click me!</article>
+	</div>
+	<div id="second-block">
+		<article style="font-size: 25px">More Gachi mixes:</article>
+		<ul>
+			<li class="link"> <a target="_blank" href="https://youtu.be/_4OuA5t_JkM"> Sabaton Gachi remix </a></li>
+			<li class="link"> <a target="_blank" href="https://youtu.be/ydZ21GXSSSI"> Wake up, DonbAss! </a> </li>
+			<li class="link"> <a target="_blank" href="https://youtu.be/DuBOlTnhE2I">  Sabaton Gachi remix </a> </li>
+		</ul>
+		</div>
 	<script>
 		const links = document.getElementsByClassName("link")
 
@@ -36,10 +50,14 @@
 			audio.muted = false;
 			audio.play();	
 		}
+
+		function playMusic(){
+			const audio = document.getElementById("music");
+			audio.muted = false;
+			audio.play();
+		}
 	</script>
-	<div style="align-items: center; display: flex;justify-content: center;"  onclick="demonstrate(), hideButton(), changeBackground()">
-		<article id = "button">Click me!</article>
-	</div>
+	
 		
 	<script>
 		function demonstrate(){
@@ -52,6 +70,7 @@
 
 		function changeBackground(){
 			document.body.style.backgroundImage = "url('http://c.tenor.com/aBs-tJmtyQAAAAAC/gachimuchi-billy-herrington.gif')";
+			document.body.style.backgroundSize = "100%";
 		}
 
 		function showButton(){
