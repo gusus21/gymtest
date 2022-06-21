@@ -90,4 +90,9 @@ color: red;
         display: none;
     }
     }
+    @media (min-width: 769px) {
+        #collapse .nav-min{
+            visibility: hidden;
+        }
+    }
     /*MQ end*/
