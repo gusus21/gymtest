@@ -32,32 +32,16 @@ img{
     box-sizing: border-box;
     border: 2px solid red;
     margin: 20px;
-    height: 110px;
-    width: 100px;
+    height: 220px;
+    width: 200px;
 }
 
 .image{
     vertical-align: middle;
-    width: 10%;
+    width: 100%;
 }
-
-#button{
+#collapse, .collapsed-button{
     visibility: hidden;
-}
-
-@media (min-width: 768px) {
-    .image{
-        width: 100%;
-    }
-
-    img{
-        border-radius: 20px;
-        box-sizing: border-box;
-        border: 2px solid red;
-        margin: 20px;
-        height: 220px;
-        width: 200px;
-    }
 }
 
 p:hover{
@@ -66,22 +50,44 @@ background-color: blue;
 color: black;
 }
 
-#button{
-    font-size: 20px;
+.button{
     color: black;
     background-color: red;
-    width: 100px;
-    box-sizing: border-box;
-    text-align: center;
-    border: 5px solid red;
+    border: 1px solid red;
+    float: right;
+    font-size: 25px;
+    margin: 3px;
+    opacity: .3;
 }
 
-#button:hover{
-cursor: grab;
+.button:hover{
+cursor:pointer;
 background-color: black;
 color: red;
 }
 
-#second-block{
-   float: right;
+#musicList{
+    height: 200px;
+    visibility: hidden;
+    overflow: auto;
 }
+.navbar{
+    height: 30px;
+}
+/*MQ start*/
+@media(max-width: 768px){
+    .collapsed-button{
+        visibility: visible;
+        float: right;
+    }
+    .collapsed-content{
+     width: 100%;
+     text-align: center;
+     background-color: red;
+     opacity: .5;   
+    }
+    .nav-content{
+        display: none;
+    }
+    }
+    /*MQ end*/

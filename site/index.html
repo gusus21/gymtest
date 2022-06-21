@@ -5,6 +5,26 @@
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body onload="buttonVisible()">
+	<header>
+		<div class="navbar">
+			<div class="nav-content button">
+				<span>Info</span>
+			</div>
+			<div class="nav-content button" onclick="showMusic()">
+				<span>Gachi mixes</span>
+			</div>
+			<div class="collapsed-button button" onclick="collapsedMenuShow()">
+				<span>Menu</span>
+			</div>
+		</div>
+		
+		<div id="collapse">
+			<ul>
+				<li class="nav-min"><div class="collapsed-content button">Gachi mixes</div></li>
+				<li class="nav-min"><div class="collapsed-content button">Info</div></li>
+			</ul>
+		</div>
+	</header>
 	<h1>
 		<i>Gym 224 One Love</i>
 	</h1>
@@ -15,29 +35,22 @@
 			Welcome to the Gym 224
 			<img src = "https://cutt.ly/XKy4TBB">
 		</div>
-	<div>
+		
+	<div id="musicList">
 		<article style="font-size: 20px">Some Gachi mixes:</article>
 		<ul>
-			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=16"> Sabaton Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=fdQQqROxqPs&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=5">  Sabaton Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc&list=RDGMEMJQXQAmqrnmK1SEjY_rKBGA&index=2"> Powerwolf Gachi remix </a></li>
-		</ul>
-		
-		
-	<audio id="audio" src="../audio/fisting-is-300-.mp3" muted autoplay></audio>
-	<audio id="music" src="../audio/boss-in-this-gy.mp3" muted autoplay></audio>
-	</div>
-	<div style="align-items: center; display: flex;justify-content: center;"  onclick="demonstrate(), hideButton(), changeBackground(), playMusic()">
-		<article id = "button">Click me!</article>
-	</div>
-	<div id="second-block">
-		<article style="font-size: 25px">More Gachi mixes:</article>
-		<ul>
+			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc"> Sabaton Gachi remix </a> </li>
+			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=fdQQqROxqPs">  Sabaton Gachi remix </a> </li>
+			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc"> Powerwolf Gachi remix </a></li>
 			<li class="link"> <a target="_blank" href="https://youtu.be/_4OuA5t_JkM"> Sabaton Gachi remix </a></li>
 			<li class="link"> <a target="_blank" href="https://youtu.be/ydZ21GXSSSI"> Wake up, DonbAss! </a> </li>
 			<li class="link"> <a target="_blank" href="https://youtu.be/DuBOlTnhE2I">  Sabaton Gachi remix </a> </li>
 		</ul>
-		</div>
+	<audio id="audio" src="../audio/fisting-is-300-.mp3" muted autoplay></audio>
+	<audio id="music" src="../audio/boss-in-this-gy.mp3" muted autoplay></audio>
+	</div>
+	
+	
 	<script>
 		const links = document.getElementsByClassName("link")
 
@@ -56,37 +69,33 @@
 			audio.muted = false;
 			audio.play();
 		}
-	</script>
-	
-		
-	<script>
+		function showMusic(){
+			if(document.getElementById("musicList").style.visibility=="hidden")
+			document.getElementById("musicList").style.visibility="visible";
+			else
+			document.getElementById("musicList").style.visibility="hidden"
+		}
 		function demonstrate(){
 			document.getElementById("image").style.visibility = "initial";
-		}
-
-		function hideButton(){
-			document.getElementById("button").style.visibility = "hidden";
 		}
 
 		function changeBackground(){
 			document.body.style.backgroundImage = "url('http://c.tenor.com/aBs-tJmtyQAAAAAC/gachimuchi-billy-herrington.gif')";
 			document.body.style.backgroundSize = "100%";
 		}
-
-		function showButton(){
-			document.getElementById("button").style.visibility = "initial";
-		}
 		
-		let timeVisible, timeHide;
+		let loadTime, backgroundTime;
 
 		function buttonVisible(){
-			timeVisible = setTimeout(showButton, 7000);
+			loadTime = setTimeout(demonstrate, 8000);
+			backgroundTime = setTimeout(changeBackground, 8000);
 		}
-
-		// function buttonResetVisible(){
-		// 	timHide = setTimeout(hideButton, 8000);
-		// }
-
-		</script>
+		function collapsedMenuShow(){
+			if(document.getElementById("collapse").style.visibility=="hidden")
+			document.getElementById("collapse").style.visibility="visible";
+			else
+			document.getElementById("collapse").style.visibility="hidden"
+		}
+	</script>
 </body>
 </html>	
