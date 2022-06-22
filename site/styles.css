@@ -68,7 +68,6 @@ color: red;
 
 #musicList{
     height: 200px;
-    visibility: hidden;
     overflow: auto;
 }
 .navbar{
