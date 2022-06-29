@@ -1,11 +1,11 @@
-const links = document.getElementsByClassName("link")
 
-		Array.from(links).forEach(link => {
-			link.addEventListener("click", playAudio, false)
-		})
+			const links = document.getElementsByClassName("link");
+			Array.from(links).forEach(link => {
+				link.addEventListener("click", playAudio, false);
+			})	
 		
 		function playAudio() {
-			const audio = document.getElementById("audio")
+			const audio = document.getElementById("audio");
 			audio.muted = false;
 			audio.play();	
 		}
@@ -48,17 +48,21 @@ const links = document.getElementsByClassName("link")
             ];
             let num = 0;
 			let buf;
+			let delay = 250;
+			buf = images[0].link + "?a=" + Math.random();
+			document.body.style.backgroundImage = "url(" + buf + ")";
+			console.log("loh");
             change = () => {
 				let oldNum = num;
 				num = (num + 1) % images.length;
 				buf = images[num].link + "?a=" + Math.random();//to avoid using cached GIF
 				setTimeout(() => {//to start loading beforehand
         			document.getElementById("kostyl").style.backgroundImage = "url(" + buf + ")";
-				}, images[oldNum].length - 250);
-				setTimeout(() => {
-        			document.body.style.backgroundImage = "url(" + buf + ")";
-					change();
-				}, images[oldNum].length);
+					setTimeout(() => {
+						document.body.style.backgroundImage = "url(" + buf + ")";
+						change();
+					}, delay);
+				}, images[oldNum].length - delay);
             }
-			change();
+			change();	
         }

@@ -4,7 +4,7 @@
 	<title> Gay website </title>
 	<link rel="stylesheet" href="styles.css">
 </head>
-<body onload="buttonVisible(), loopedBackground()">
+<body onload="buttonVisible(), loopedBackground(), module.getMixes()">
 	<header>
 		<div class="navbar">
 			<div class="nav-content button">
@@ -36,27 +36,73 @@
 			<img src = "https://cutt.ly/XKy4TBB">
 		</div>
 		<div id = "kostyl"></div>
-	<div id="musicList" style="visibility:hidden;">
+	<div id="musicList" style="visibility:hidden;" onclick="playAudio()">
 		<article style="font-size: 20px">Some Gachi mixes:</article>
-		<ul>
-			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=Vhrh4JzpJyc">Sabaton Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=fdQQqROxqPs">Sabaton Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://www.youtube.com/watch?v=laEn1BsYJlc">Powerwolf Gachi remix </a></li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/_4OuA5t_JkM">Sabaton Gachi remix </a></li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/ydZ21GXSSSI">Wake up, DonbAss! </a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/DuBOlTnhE2I">Sabaton Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/m_HX7yifl84">Moonlight sonata Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/uWXrYSJwHws">Modern Talking Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/U_8rvwImB7w">Modern Talking Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/OWOr7BnKOds">Modern Talking Gachi remix </a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/QyKoDAggoco">Gachi San Andreas</a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/XP8-1mz4vlE">KFC mans</a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/MU7gL_HQCm4">Dead anonist</a> </li>
-			<li class="link"> <a target="_blank" href="https://youtu.be/NdqbI0_0GsM">♂AssClap♂</a> </li>
-		</ul>
-	<audio id="audio" src="../audio/fisting-is-300-.mp3" muted autoplay></audio>
-	<audio id="music" src="../audio/boss-in-this-gy.mp3" muted autoplay></audio>
+		<ul id="musicListInternal"></ul>
+		<audio id="audio" src="../audio/fisting-is-300-.mp3" muted autoplay></audio>
+		<audio id="music" src="../audio/boss-in-this-gy.mp3" muted autoplay></audio>
 	</div>
 	<script src="script.js"></script>
+	<script>let module = {};</script>
+	<script type="module">
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+		import { getDatabase, ref, child, get, set } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+		const firebaseConfig = {
+			apiKey: "AIzaSyCtiljiSdfz0fm0hRBRwyExgIk2SzsZ--s",
+			authDomain: "gym224website.firebaseapp.com",
+			projectId: "gym224website",
+			storageBucket: "gym224website.appspot.com",
+			messagingSenderId: "521799187351",
+			appId: "1:521799187351:web:9d68ae622efca7b977a2d2",
+			databaseURL: "https://gym224website-default-rtdb.europe-west1.firebasedatabase.app"
+		};
+		const app = initializeApp(firebaseConfig);
+
+		module.getMixes = () => {
+			const dbRef = ref(getDatabase());
+			get(child(dbRef, "mixes")).then((snapshot) => {
+				if (snapshot.exists())
+				{
+					for (let i = 1; i < snapshot.val().length; i++)
+					{
+						addLink(snapshot.val()[i]);
+					}
+				}
+				else
+				{
+					console.log("No data available");
+				}
+				}).catch((error) => {
+				console.error(error);
+			});
+		}
+
+		function addLink(dataFromDB)
+		{
+			//parse
+			let linkNName = dataFromDB.split(',');
+			let link = linkNName[0];
+			let name = linkNName[1];
+			if (linkNName.length > 2)
+			{
+				for (let i = 2; i < linkNName.length; i++)
+				{
+					name += "," + linkNName[i];
+				}
+			}
+			//<a> element
+			let linkItem = document.createElement('a');
+			linkItem.target = "_blank";
+			linkItem.href = link;
+			linkItem.textContent = name;
+			//<li> element
+			let listItem = document.createElement('li');
+			listItem.className = "link";
+			listItem.appendChild(linkItem);
+			//adding
+			document.getElementById("musicListInternal").appendChild(listItem);
+		}
+	</script>
 </body>
 </html>	
