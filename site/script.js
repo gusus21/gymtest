@@ -43,14 +43,22 @@ const links = document.getElementsByClassName("link")
 		}
         function loopedBackground(){
             var images = [
-                "https://c.tenor.com/6V1ooQVn3CQAAAAd/gachi-fist.gif",
-                "http://c.tenor.com/aBs-tJmtyQAAAAAC/gachimuchi-billy-herrington.gif"
+                { link: "https://c.tenor.com/6V1ooQVn3CQAAAAd/gachi-fist.gif", length: 8000 },
+                { link: "http://c.tenor.com/aBs-tJmtyQAAAAAC/gachimuchi-billy-herrington.gif", length: 6600 }
             ];
-            let count = 1;
-            change=()=>{
-                document.body.style.backgroundImage = "url("+images[count]+")";
-                count = (count + 1) % images.length;
+            let num = 0;
+			let buf;
+            change = () => {
+				let oldNum = num;
+				num = (num + 1) % images.length;
+				buf = images[num].link + "?a=" + Math.random();//to avoid using cached GIF
+				setTimeout(() => {//to start loading beforehand
+        			document.getElementById("kostyl").style.backgroundImage = "url(" + buf + ")";
+				}, images[oldNum].length - 250);
+				setTimeout(() => {
+        			document.body.style.backgroundImage = "url(" + buf + ")";
+					change();
+				}, images[oldNum].length);
             }
-            setInterval(change, 8000);
-        } 
-        
+			change();
+        }
