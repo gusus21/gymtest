@@ -46,7 +46,7 @@ const links = document.getElementsByClassName("link")
                 { link: "../images/gachi-fist.gif", length: 7800 },
                 { link: "../images/gachimuchi-billy-herrington.gif", length: 6600 }
             ];
-            let num = 0;
+            let num = 1;
 			let buf;
 			let delay = 250;
             change = () => {
