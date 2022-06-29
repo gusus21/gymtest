@@ -49,7 +49,8 @@ const links = document.getElementsByClassName("link")
             let num = 0;
 			let buf;
 			let delay = 250;
-			document.body.style.backgroundImage = "url(" + images[0].link + ")";
+			buf = images[0].link + "?a=" + Math.random();
+			document.body.style.backgroundImage = "url(" + buf + ")";
             change = () => {
 				let oldNum = num;
 				num = (num + 1) % images.length;
