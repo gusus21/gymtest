@@ -38,6 +38,9 @@
 		<div id = "kostyl"></div>
 	<div id="musicList" style="visibility:hidden;" onclick="playAudio()">
 		<article style="font-size: 20px">Some Gachi mixes:</article>
+		<div id="addButton" class="button" onclick="module.addMix()">
+			<span>Add</span>
+		</div>
 		<ul id="musicListInternal"></ul>
 		<audio id="audio" src="../audio/fisting-is-300-.mp3" muted autoplay></audio>
 		<audio id="music" src="../audio/boss-in-this-gy.mp3" muted autoplay></audio>
@@ -77,6 +80,15 @@
 				console.error(error);
 			});
 		}
+
+		module.addMix = () => {
+			let link = prompt("Enter link...");
+			let name = prompt("Enter track name...");
+			let linkNName = link + "," + name;
+			let mixCount = document.getElementById("musicListInternal").childElementCount;
+			set(ref(getDatabase(app), 'mixes/' + (mixCount + 1)), linkNName);
+			addLink(linkNName);
+		};
 
 		function addLink(dataFromDB)
 		{
