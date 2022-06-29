@@ -61,5 +61,5 @@ const links = document.getElementsByClassName("link")
 					}, delay);
 				}, images[oldNum].length - delay);
             }
-			change();
+			change();	
         }
