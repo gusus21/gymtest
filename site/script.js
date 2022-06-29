@@ -1,10 +1,8 @@
-		function addSound()
-		{
-			let links = document.getElementsByClassName("link");
+
+			const links = document.getElementsByClassName("link");
 			Array.from(links).forEach(link => {
 				link.addEventListener("click", playAudio, false);
-			})
-		}	
+			})	
 		
 		function playAudio() {
 			const audio = document.getElementById("audio");

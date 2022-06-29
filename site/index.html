@@ -43,7 +43,7 @@
 		<audio id="music" src="../audio/boss-in-this-gy.mp3" muted autoplay></audio>
 	</div>
 	<script src="script.js"></script>
-	<script>const module = {};</script>
+	<script>let module = {};</script>
 	<script type="module">
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 		import { getDatabase, ref, child, get, set } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
@@ -60,7 +60,6 @@
 		const app = initializeApp(firebaseConfig);
 
 		module.getMixes = () => {
-			console.log(module);
 			const dbRef = ref(getDatabase());
 			get(child(dbRef, "mixes")).then((snapshot) => {
 				if (snapshot.exists())
