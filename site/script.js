@@ -1,4 +1,5 @@
 const links = document.getElementsByClassName("link")
+const module = {};
 
 		Array.from(links).forEach(link => {
 			link.addEventListener("click", playAudio, false)
@@ -66,3 +67,17 @@ const links = document.getElementsByClassName("link")
             }
 			change();	
         }
+
+		let canPlay = true;
+
+		function playAudio()
+		{
+			if (canPlay)
+			{
+				let audios = ["../audio/fisting-is-300-.mp3", "../audio/boss-in-this-gy.mp3"];
+				let audio = new Audio(audios[Math.floor(Math.random() * 10) % 2]);
+				audio.play();
+				canPlay = false;
+				audio.onended = () => { canPlay = true; };
+			}
+		}
