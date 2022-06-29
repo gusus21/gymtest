@@ -43,12 +43,13 @@ const links = document.getElementsByClassName("link")
 		}
         function loopedBackground(){
             var images = [
-                { link: "../images/gachi-fist.gif", length: 7800 },
+                { link: "../images/gachi-fist.gif", length: 8000 },
                 { link: "../images/gachimuchi-billy-herrington.gif", length: 6600 }
             ];
-            let num = 1;
+            let num = 0;
 			let buf;
 			let delay = 250;
+			document.body.style.backgroundImage = "url(" + images[0].link + ")";
             change = () => {
 				let oldNum = num;
 				num = (num + 1) % images.length;
