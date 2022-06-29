@@ -43,8 +43,8 @@ const links = document.getElementsByClassName("link")
 		}
         function loopedBackground(){
             var images = [
-                "https://c.tenor.com/6V1ooQVn3CQAAAAd/gachi-fist.gif",
-                "http://c.tenor.com/aBs-tJmtyQAAAAAC/gachimuchi-billy-herrington.gif"
+                "../images/gachi-fist.gif",
+				"../images/gachimuchi-billy-herrington.gif"
             ];
             let count = 1;
             change=()=>{
