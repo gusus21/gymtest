@@ -43,7 +43,7 @@ const links = document.getElementsByClassName("link")
 		}
         function loopedBackground(){
             var images = [
-                { link: "../images/gachi-fist.gif", length: 8000 },
+                { link: "../images/gachi-fist.gif", length: 7800 },
                 { link: "../images/gachimuchi-billy-herrington.gif", length: 6600 }
             ];
             let num = 0;
