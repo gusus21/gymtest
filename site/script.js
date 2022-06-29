@@ -54,7 +54,7 @@ const links = document.getElementsByClassName("link")
 				buf = images[num].link + "?a=" + Math.random();//to avoid using cached GIF
 				setTimeout(() => {//to start loading beforehand
         			document.getElementById("kostyl").style.backgroundImage = "url(" + buf + ")";
-				}, images[oldNum].length);
+				}, images[oldNum].length - 250);
 				setTimeout(() => {
         			document.body.style.backgroundImage = "url(" + buf + ")";
 					change();
