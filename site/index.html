@@ -83,11 +83,25 @@
 
 		module.addMix = () => {
 			let link = prompt("Enter link...");
-			let name = prompt("Enter track name...");
-			let linkNName = link + "," + name;
-			let mixCount = document.getElementById("musicListInternal").childElementCount;
-			set(ref(getDatabase(app), 'mixes/' + (mixCount + 1)), linkNName);
-			addLink(linkNName);
+			if (link == "")//TODO: add regex for link
+			{
+				alert("No link was given!");
+			}
+			else if (link != null)
+			{
+				let name = prompt("Enter track name...");
+				if (name == "")
+				{
+					alert("No name was given!");
+				}
+				else if (name != null)
+				{
+					let linkNName = link + "," + name;
+					let mixCount = document.getElementById("musicListInternal").childElementCount;
+					set(ref(getDatabase(app), 'mixes/' + (mixCount + 1)), linkNName);
+					addLink(linkNName);
+				}
+			}
 		};
 
 		function addLink(dataFromDB)
