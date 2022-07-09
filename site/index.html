@@ -49,7 +49,7 @@
 	<script>let module = {};</script>
 	<script type="module">
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-		import { getDatabase, ref, child, get, set } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+		import { getDatabase, ref, child, get, set, update, remove, push } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
 
 		const firebaseConfig = {
 			apiKey: "AIzaSyCtiljiSdfz0fm0hRBRwyExgIk2SzsZ--s",
@@ -63,14 +63,13 @@
 		const app = initializeApp(firebaseConfig);
 
 		module.getMixes = () => {
-			const dbRef = ref(getDatabase());
+			let dbRef = ref(getDatabase());
 			get(child(dbRef, "mixes")).then((snapshot) => {
 				if (snapshot.exists())
 				{
-					for (let i = 1; i < snapshot.val().length; i++)
-					{
-						addLink(snapshot.val()[i]);
-					}
+					snapshot.forEach((childSnapshot) => {
+						addLink(childSnapshot.key, childSnapshot.val());
+					});
 				}
 				else
 				{
@@ -98,13 +97,14 @@
 				{
 					let linkNName = link + "," + name;
 					let mixCount = document.getElementById("musicListInternal").childElementCount;
-					set(ref(getDatabase(app), 'mixes/' + (mixCount + 1)), linkNName);
-					addLink(linkNName);
+					let mixId = push(child(ref(getDatabase()), 'mixes')).key;
+					set(ref(getDatabase(app), 'mixes/' + mixId), linkNName);
+					addLink(mixId, linkNName);
 				}
 			}
 		};
 
-		function addLink(dataFromDB)
+		function addLink(idFromDB, dataFromDB)
 		{
 			//parse
 			let linkNName = dataFromDB.split(',');
@@ -122,13 +122,65 @@
 			linkItem.target = "_blank";
 			linkItem.href = link;
 			linkItem.textContent = name;
+			linkItem.id = "mix " + idFromDB;
+			//<a> element for edit
+			let linkItemEdit = document.createElement('a');
+			linkItemEdit.textContent = " ✏️";
+			linkItemEdit.setAttribute("onclick", "module.editMix(\"" + idFromDB + "\")");
+			//<a> element for delete
+			let linkItemDelete = document.createElement('a');
+			linkItemDelete.textContent = " 🗑️";
+			linkItemDelete.setAttribute("onclick", "module.deleteMix(\"" + idFromDB + "\")");
 			//<li> element
 			let listItem = document.createElement('li');
 			listItem.className = "link";
 			listItem.appendChild(linkItem);
+			listItem.appendChild(linkItemEdit);
+			listItem.appendChild(linkItemDelete);
 			//adding
 			document.getElementById("musicListInternal").appendChild(listItem);
 		}
+
+		module.editMix = (mixId) => {
+			let newLink = null, newName = null;
+			if (confirm("Do you want to edit track link?"))
+			{
+				newLink = prompt("Enter new link...");
+				if (newLink == "")//TODO: add regex for link (it is copy)
+				{
+					alert("No link was given!");
+					newLink = null;
+				}
+			}
+			if (confirm("Do you want to edit track name?"))
+			{
+				newName = prompt("Enter new name...");
+				if (newName == "")//TODO: add regex for link (it is copy)
+				{
+					alert("No name was given!");
+					newName = null;
+				}
+			}
+			if (newName != null || newLink != null)//if there is any data to edit
+			{
+				let element = document.getElementById("mix " + mixId);
+				if (newLink == null) newLink = element.href;
+				else element.href = newLink;
+				if (newName == null) newName = element.textContent;
+				else element.textContent = newName;
+				let updates = {};
+				updates["/mixes/" + mixId] = newLink + "," + newName;
+				update(ref(getDatabase()), updates);
+			}
+		};
+
+		module.deleteMix = (mixId) => {
+			let element = document.getElementById("mix " + mixId);
+			let liToDel = element.parentNode;
+			let dbRef = ref(getDatabase());
+			remove(child(dbRef, "/mixes/" + mixId));
+			liToDel.remove();
+		};
 	</script>
 </body>
 </html>	
