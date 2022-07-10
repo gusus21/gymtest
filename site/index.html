@@ -122,15 +122,14 @@
 			linkItem.target = "_blank";
 			linkItem.href = link;
 			linkItem.textContent = name;
-			linkItem.id = "mix " + idFromDB;
 			//<a> element for edit
 			let linkItemEdit = document.createElement('a');
 			linkItemEdit.textContent = " ✏️";
-			linkItemEdit.setAttribute("onclick", "module.editMix(\"" + idFromDB + "\")");
+			linkItemEdit.setAttribute("onclick", "module.editMix(this, \"" + idFromDB + "\")");
 			//<a> element for delete
 			let linkItemDelete = document.createElement('a');
 			linkItemDelete.textContent = " 🗑️";
-			linkItemDelete.setAttribute("onclick", "module.deleteMix(\"" + idFromDB + "\")");
+			linkItemDelete.setAttribute("onclick", "module.deleteMix(this, \"" + idFromDB + "\")");
 			//<li> element
 			let listItem = document.createElement('li');
 			listItem.className = "link";
@@ -141,7 +140,7 @@
 			document.getElementById("musicListInternal").appendChild(listItem);
 		}
 
-		module.editMix = (mixId) => {
+		module.editMix = (clickedEl, mixId) => {
 			let newLink = null, newName = null;
 			if (confirm("Do you want to edit track link?"))
 			{
@@ -163,7 +162,7 @@
 			}
 			if (newName != null || newLink != null)//if there is any data to edit
 			{
-				let element = document.getElementById("mix " + mixId);
+				let element = clickedEl.parentNode.childNodes.item(0);
 				if (newLink == null) newLink = element.href;
 				else element.href = newLink;
 				if (newName == null) newName = element.textContent;
@@ -174,9 +173,8 @@
 			}
 		};
 
-		module.deleteMix = (mixId) => {
-			let element = document.getElementById("mix " + mixId);
-			let liToDel = element.parentNode;
+		module.deleteMix = (clickedEl, mixId) => {
+			let liToDel = clickedEl.parentNode;
 			let dbRef = ref(getDatabase());
 			remove(child(dbRef, "/mixes/" + mixId));
 			liToDel.remove();
